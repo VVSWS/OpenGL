@@ -1,0 +1,8 @@
+﻿  glad.c
+  main.cpp
+D:\STOP\PROGRAMMER\OpenGL\FirstProject\FirstProject\main.cpp(259,11): warning C4101: 'nx': unreferenced local variable
+D:\STOP\PROGRAMMER\OpenGL\FirstProject\FirstProject\main.cpp(259,15): warning C4101: 'ny': unreferenced local variable
+D:\STOP\PROGRAMMER\OpenGL\FirstProject\FirstProject\main.cpp(259,19): warning C4101: 'nz': unreferenced local variable
+D:\STOP\PROGRAMMER\OpenGL\FirstProject\FirstProject\main.cpp(431,20): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+D:\STOP\PROGRAMMER\OpenGL\FirstProject\FirstProject\main.cpp(452,56): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+  FirstProject.vcxproj -> D:\STOP\PROGRAMMER\OpenGL\FirstProject\FirstProject\x64\Debug\FirstProject.exe
