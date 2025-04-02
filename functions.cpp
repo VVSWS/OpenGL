@@ -1,5 +1,10 @@
 #include <functions.h>
 
+float rotationOffset = 0.0f;
+bool isRotating = true;
+float stopTime = 0.0f;
+float scaleFactor = 1.0f;
+
 void createSphere(float radius, int sectors, int stacks, std::vector<float>& vertices, std::vector<unsigned int>& indices)
 {
     const float PI = 3.1415926f;
@@ -59,3 +64,24 @@ void createSphere(float radius, int sectors, int stacks, std::vector<float>& ver
     }
 }
 
+void scrollCallback(GLFWwindow* window, double xoffset, double yoffset)
+{
+    scaleFactor += yoffset * 0.1f; // Adjust sensitivity
+    scaleFactor = glm::clamp(scaleFactor, 0.5f, 2.0f); // Prevent extreme scaling
+}
+
+void mouseButtonCallback(GLFWwindow* window, int button, int action, int mods)
+{
+    if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
+    {
+        if (isRotating)
+        {
+            stopTime = glfwGetTime(); // Store when stopped
+        }
+        else
+        {
+            rotationOffset += glfwGetTime() - stopTime; // Preserve rotation timing
+        }
+        isRotating = !isRotating;
+    }
+}

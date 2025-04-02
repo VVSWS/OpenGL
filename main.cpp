@@ -1,14 +1,9 @@
 ﻿#include <glad.h>
-#include <glfw3.h>
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
 #include <shaders.h>
 #include <functions.h>
 #include <iostream>
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
-
 
 int main()
 {
@@ -33,6 +28,9 @@ int main()
     }
 
     glfwMakeContextCurrent(window);
+    glfwSetScrollCallback(window, scrollCallback);
+    glfwSetMouseButtonCallback(window, mouseButtonCallback);
+
 
     // Initialization of GLAD
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
@@ -124,18 +122,26 @@ int main()
         // Transformations
         glm::mat4 projection = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 100.0f);
         glm::mat4 view = glm::lookAt(glm::vec3(0.0f, 0.0f, 5.0f),
-            glm::vec3(0.0f, 0.0f, 0.0f),
-            glm::vec3(0.0f, 1.0f, 0.0f));
+        glm::vec3(0.0f, 0.0f, 0.0f),
+        glm::vec3(0.0f, 1.0f, 0.0f));
 
         // Circular motion of a sphere
-        float time = glfwGetTime();
+        float currentTime = glfwGetTime();
+        float time = isRotating ? currentTime - rotationOffset : stopTime - rotationOffset;
         float radius = 2.0f;
         float camX = sin(time) * radius;
         float camZ = cos(time) * radius;
 
+       
         glm::mat4 model = glm::mat4(1.0f);
         model = glm::translate(model, glm::vec3(camX, 0.0f, camZ));
-        model = glm::rotate(model, time, glm::vec3(0.5f, 1.0f, 0.0f));
+        model = glm::rotate(model, time, glm::vec3(0.8f, 0.1f, 0.1f));
+       
+        // Apply scaling
+        model = glm::scale(model, glm::vec3(scaleFactor));
+
+        // Pass to shaders
+        glUniformMatrix4fv(glGetUniformLocation(shaderProgram, "model"), 1, GL_FALSE, glm::value_ptr(model));
 
         // Passing matrices to shader
         glUniformMatrix4fv(glGetUniformLocation(shaderProgram, "model"), 1, GL_FALSE, glm::value_ptr(model));

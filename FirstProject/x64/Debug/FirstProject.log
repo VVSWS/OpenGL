@@ -1,4 +1,4 @@
 ﻿  main.cpp
-D:\STOP\PROGRAMMER\OpenGL\FirstProject\FirstProject\main.cpp(131,20): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-D:\STOP\PROGRAMMER\OpenGL\FirstProject\FirstProject\main.cpp(152,56): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+D:\STOP\PROGRAMMER\OpenGL\FirstProject\FirstProject\main.cpp(129,27): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+D:\STOP\PROGRAMMER\OpenGL\FirstProject\FirstProject\main.cpp(158,56): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
   FirstProject.vcxproj -> D:\STOP\PROGRAMMER\OpenGL\FirstProject\FirstProject\x64\Debug\FirstProject.exe
